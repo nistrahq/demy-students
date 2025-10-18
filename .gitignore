@@ -7,6 +7,7 @@
 # Xcode user data and build products
 # ─────────────────────────────────────────────
 xcuserdata/
+**/xcshareddata/
 *.xcuserstate
 *.moved-aside
 build/
