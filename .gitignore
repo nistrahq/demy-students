@@ -94,3 +94,9 @@ playground.xcworkspace
 
 ## Simulator / Preview settings cache
 # *.simsettings
+
+# ─────────────────────────────────────────────
+# VS Code workspace settings
+# ─────────────────────────────────────────────
+.vscode/*
+!.vscode/settings.json
