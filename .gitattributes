@@ -1,0 +1,30 @@
+# ─────────────────────────────────────────────
+# Ensure consistent line endings for Swift/iOS
+# ─────────────────────────────────────────────
+
+# Always use LF for text-based files
+*.swift        text eol=lf
+*.h            text eol=lf
+*.m            text eol=lf
+*.mm           text eol=lf
+*.plist        text eol=lf
+*.xib          text eol=lf
+*.storyboard   text eol=lf
+*.json         text eol=lf
+*.yml          text eol=lf
+*.yaml         text eol=lf
+*.md           text eol=lf
+*.txt          text eol=lf
+*.sh           text eol=lf
+
+# Treat images and binaries as binary (no line-ending changes)
+*.png          binary
+*.jpg          binary
+*.jpeg         binary
+*.gif          binary
+*.pdf          binary
+*.xcassets/**  binary
+*.xcarchive/** binary
+
+# Ignore local macOS attributes
+.DS_Store      export-ignore
