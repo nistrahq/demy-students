@@ -10,9 +10,24 @@
 		FAD2694F2ECA568100BA63BB /* DemyStudents.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = DemyStudents.app; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
 
+/* Begin PBXFileSystemSynchronizedBuildFileExceptionSet section */
+		FA54EA2F2ECD330C0023A73C /* Exceptions for "DemyStudents" folder in "DemyStudents" target */ = {
+			isa = PBXFileSystemSynchronizedBuildFileExceptionSet;
+			membershipExceptions = (
+				Features/Auth/Data/.gitkeep,
+				Features/Auth/Domain/.gitkeep,
+				Features/Auth/Presentation/.gitkeep,
+			);
+			target = FAD2694E2ECA568100BA63BB /* DemyStudents */;
+		};
+/* End PBXFileSystemSynchronizedBuildFileExceptionSet section */
+
 /* Begin PBXFileSystemSynchronizedRootGroup section */
 		FAD269512ECA568100BA63BB /* DemyStudents */ = {
 			isa = PBXFileSystemSynchronizedRootGroup;
+			exceptions = (
+				FA54EA2F2ECD330C0023A73C /* Exceptions for "DemyStudents" folder in "DemyStudents" target */,
+			);
 			path = DemyStudents;
 			sourceTree = "<group>";
 		};
