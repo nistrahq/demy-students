@@ -19,60 +19,112 @@ struct InputField: View {
     
     @FocusState private var isFocused: Bool
     
-    var borderColor: Color {
-        if let _ = errorMessage {
+    private var hasError: Bool { errorMessage != nil }
+    
+    private var backgroundColor: Color {
+        hasError ? AppTheme.colors.error.opacity(0.08) : Color(.systemGray6)
+    }
+    
+    private var borderColor: Color {
+        if hasError {
+            return AppTheme.colors.error.opacity(0.6)
+        } else if isFocused {
+            return AppTheme.colors.brandPrimary.opacity(0.4)
+        } else {
+            return Color.clear
+        }
+    }
+    
+    private var iconColor: Color {
+        if hasError {
             return AppTheme.colors.error
         } else if isFocused {
             return AppTheme.colors.brandPrimary
         } else {
-            return AppTheme.colors.outline
+            return Color(.secondaryLabel)
         }
     }
     
     var body: some View {
-        VStack(alignment: .leading, spacing: AppTheme.spacing.xs) {
+        VStack(alignment: .leading, spacing: AppTheme.spacing.xs + 2) {
             
-            // MARK: - Label
             Text(label)
-                .font(AppTheme.typography.label)
-                .foregroundStyle(AppTheme.colors.textSecondary)
+                .font(.system(.subheadline, design: .rounded).weight(.medium))
+                .foregroundStyle(Color(.secondaryLabel))
             
-            // MARK: - Input Container
             HStack(spacing: AppTheme.spacing.sm) {
                 
-                // Icon (optional)
                 if let icon = icon {
                     icon
-                        .foregroundStyle(
-                            isFocused ? AppTheme.colors.brandPrimary : AppTheme.colors.textSecondary
-                        )
+                        .font(.system(size: 20))
+                        .foregroundStyle(iconColor)
                 }
                 
-                // Input (normal or secure)
                 if isSecure {
                     SecureField(placeholder, text: $text)
                         .focused($isFocused)
                         .keyboardType(keyboardType)
+                        .font(.system(.body, design: .rounded))
+                        .tint(AppTheme.colors.brandPrimary)
                 } else {
                     TextField(placeholder, text: $text)
                         .focused($isFocused)
                         .keyboardType(keyboardType)
+                        .font(.system(.body, design: .rounded))
+                        .tint(AppTheme.colors.brandPrimary)
                 }
             }
-            .padding(AppTheme.spacing.md)
-            .background(AppTheme.colors.surface)
+            .padding(.horizontal, AppTheme.spacing.md)
+            .padding(.vertical, AppTheme.spacing.sm + 2)
+            .frame(minHeight: 44)
+            .background(backgroundColor)
+            .clipShape(RoundedRectangle(cornerRadius: AppTheme.radii.sm + 2))
             .overlay(
-                RoundedRectangle(cornerRadius: AppTheme.radii.sm)
-                    .stroke(borderColor, lineWidth: 1)
+                RoundedRectangle(cornerRadius: AppTheme.radii.sm + 2)
+                    .strokeBorder(borderColor, lineWidth: 1.5)
             )
-            .cornerRadius(AppTheme.radii.sm)
             
-            // MARK: - Error message
             if let error = errorMessage {
-                Text(error)
-                    .font(AppTheme.typography.caption)
-                    .foregroundStyle(AppTheme.colors.error)
+                HStack(spacing: 4) {
+                    Image(systemName: "exclamationmark.circle.fill")
+                        .font(.system(size: 12))
+                    
+                    Text(error)
+                        .font(.system(.caption, design: .rounded))
+                }
+                .foregroundStyle(AppTheme.colors.error)
+                .transition(.opacity.combined(with: .move(edge: .top)))
             }
         }
+        .animation(.easeInOut(duration: 0.2), value: isFocused)
+        .animation(.easeInOut(duration: 0.2), value: hasError)
     }
+}
+
+#Preview {
+    VStack(spacing: 24) {
+        InputField(
+            label: "Email",
+            placeholder: "name@example.com",
+            text: .constant(""),
+            icon: Image(systemName: "envelope")
+        )
+        
+        InputField(
+            label: "Password",
+            placeholder: "••••••••",
+            text: .constant(""),
+            icon: Image(systemName: "lock"),
+            isSecure: true
+        )
+        
+        InputField(
+            label: "Email",
+            placeholder: "name@example.com",
+            text: .constant("invalid"),
+            icon: Image(systemName: "envelope"),
+            errorMessage: "Please enter a valid email"
+        )
+    }
+    .padding()
 }
