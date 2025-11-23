@@ -14,7 +14,9 @@ final class SignInViewModel: ObservableObject {
     @Published var password: String = ""
     
     @Published var isLoading: Bool = false
-    @Published var errorMessage: String?
+    @Published var emailError: String?
+    @Published var passwordError: String?
+    @Published var generalError: String?
     
     private let signInUseCase: SignInUseCase
     private let session: SessionManager
@@ -28,24 +30,35 @@ final class SignInViewModel: ObservableObject {
     }
     
     private func validateFields() -> Bool {
-        if email.isEmpty || password.isEmpty {
-            errorMessage = "Email and password cannot be empty."
-            return false
+        emailError = nil
+        passwordError = nil
+        
+        var isValid = true
+        
+        if email.isEmpty {
+            emailError = String(localized: "sign_in_email_error", table: "Auth")
+            isValid = false
         }
-        return true
+        
+        if password.isEmpty {
+            passwordError = String(localized: "sign_in_password_error", table: "Auth")
+            isValid = false
+        }
+        
+        return isValid
     }
     
     func signIn() async {
         guard validateFields() else { return }
         
         isLoading = true
-        errorMessage = nil
+        generalError = nil
         
         do {
             let _ = try await signInUseCase.execute(email: email, password: password)
             session.isAuthenticated = true
         } catch {
-            errorMessage = "Failed to sign in. Please check your credentials and try again."
+            generalError = String(localized: "sign_in_error", table: "Auth")
         }
         
         isLoading = false

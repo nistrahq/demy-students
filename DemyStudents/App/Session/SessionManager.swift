@@ -20,7 +20,7 @@ final class SessionManager: ObservableObject {
         self.isAuthenticated = (try? keychain.get("accessToken")) != nil
     }
     
-    func logout() {
+    func signOut() {
         try? keychain.delete("accessToken")
         isAuthenticated = false
     }

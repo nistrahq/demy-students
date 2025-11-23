@@ -9,6 +9,6 @@ enum ApiEndpoints {
     static let baseURL = Environment.apiBaseURL
     
     enum Auth {
-        static let signIn = "/auth/sign-in"
+        static let signIn = "/authentication/sign-in"
     }
 }

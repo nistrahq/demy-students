@@ -6,7 +6,7 @@
 //
 
 struct SignInResponseDTO: Codable {
-    let id: String
-    let email: String
+    let id: Int
+    let emailAddress: String
     let token: String
 }

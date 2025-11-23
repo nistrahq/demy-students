@@ -8,8 +8,8 @@
 enum UserMapper {
     static func fromDTO(_ dto: SignInResponseDTO) -> User {
         return User(
-            id: dto.id,
-            email: dto.email,
+            id: String(dto.id),
+            email: dto.emailAddress,
         )
     }
 }

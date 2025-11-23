@@ -13,7 +13,7 @@ final class AuthRemoteDataSourceImpl: AuthRemoteDataSource {
     }
     
     func signIn(email: String, password: String) async throws -> SignInResponseDTO {
-        let body = SignInRequestDTO(email: email, password: password)
+        let body = SignInRequestDTO(emailAddress: email, password: password)
         return try await client.post(ApiEndpoints.Auth.signIn, body: body)
     }
 }

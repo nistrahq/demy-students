@@ -6,6 +6,6 @@
 //
 
 struct SignInRequestDTO: Codable {
-    let email: String
+    let emailAddress: String
     let password: String
 }
