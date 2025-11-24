@@ -6,9 +6,9 @@
 //
 
 enum ApiEndpoints {
-    static let baseURL = "https://nistra-demy.up.railway.app/api/v1"
+    static let baseURL = Environment.apiBaseURL
     
     enum Auth {
-        static let signIn = "/auth/sign-in"
+        static let signIn = "/authentication/sign-in"
     }
 }
