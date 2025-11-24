@@ -14,6 +14,13 @@ struct SignInView: View {
     var body: some View {
         VStack(spacing: AppTheme.spacing.lg) {
             
+            // MARK: - Logo
+            Image("DemyBrandMarkOriginal")
+                .resizable()
+                .scaledToFit()
+                .frame(width: 120)
+                .padding(.top, AppTheme.spacing.xl)
+            
             // MARK: - Title
             Text("sign_in_title", tableName: "Auth")
                 .font(AppTheme.typography.titleLarge)
