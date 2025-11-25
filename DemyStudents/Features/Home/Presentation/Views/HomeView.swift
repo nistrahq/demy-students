@@ -40,7 +40,7 @@ struct HomeView: View {
                 .padding(.horizontal)
             }
             .onAppear {
-                vm.loadUser(session)
+                vm.loadUser()
             }
         }
     }

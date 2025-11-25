@@ -1,23 +1,15 @@
-//
-//  HomeViewModel.swift
-//  DemyStudents
-//
-
 import SwiftUI
 import Combine
 
 @MainActor
 class HomeViewModel: ObservableObject {
 
-    // MARK: - Top greeting data
     @Published var name: String = "Student"
     @Published var academicPeriod: String = "Academic Semester 2025"
 
-    // MARK: - Date pills
     @Published var selectedDate: Date = Date()
     @Published var availableDates: [Date] = []
 
-    // MARK: - Single mock session (for UI preview)
     @Published var mockSession: ScheduleSession? = nil
 
     init() {
@@ -25,12 +17,10 @@ class HomeViewModel: ObservableObject {
         loadMockSession()
     }
 
-    func loadUser(_ session: SessionManager) {
-        // Si ya tienes un usuario real en session, úsalo.
-        if let user = session.currentUser {
-            self.name = user.email         // por ahora solo tienes email
-            self.academicPeriod = "Academic Semester 2025"
-        }
+    // NO usa SessionManager
+    func loadUser() {
+        // Lo dejamos vacío por ahora
+        // Más adelante usaremos el endpoint real de Students
     }
 
     func loadDates() {
