@@ -2,10 +2,11 @@ import SwiftUI
 
 struct HomeView: View {
 
+    @EnvironmentObject var session: SessionManager
     @StateObject private var vm = HomeViewModel()
 
     var body: some View {
-        VStack(alignment: .leading, spacing: 16) {
+        VStack(alignment: .leading) {
 
             TopBar(title: "Home", showBack: false)
 
@@ -17,10 +18,10 @@ struct HomeView: View {
                         academicPeriod: vm.academicPeriod
                     )
 
-                    // TODAY'S SCHEDULE
+                    // TODAY’S SCHEDULE
                     Text("Today’s schedule")
-                        .font(AppTheme.typography.titleMedium)
-                        .foregroundStyle(AppTheme.colors.textPrimary)
+                        .font(AppTypography.titleMedium)
+                        .foregroundStyle(AppColors.textPrimary)
 
                     // DATE PILLS
                     DatePillScrollView(
@@ -28,25 +29,18 @@ struct HomeView: View {
                         dates: vm.availableDates
                     )
 
-                    // SCHEDULE CARD (MOCK)
-                    if let session = vm.todaySessions.first {
+                    // CARD
+                    if let sessionCard = vm.mockSession {
                         ScheduleCard(
-                            session: session,
+                            session: sessionCard,
                             gradient: AppGradients.orange
                         )
                     }
-
-                    // SEE MORE -->
-                    HStack {
-                        Spacer()
-                        Button("See More") {
-                            // navigation goes here later
-                        }
-                        .font(AppTheme.typography.labelMedium)
-                        .foregroundStyle(AppTheme.colors.brandPrimary)
-                    }
                 }
                 .padding(.horizontal)
+            }
+            .onAppear {
+                vm.loadUser(session)
             }
         }
     }

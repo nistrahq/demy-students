@@ -1,4 +1,5 @@
 import SwiftUI
+import Combine
 
 struct ScheduleCard: View {
 
@@ -9,13 +10,13 @@ struct ScheduleCard: View {
         HStack(alignment: .center, spacing: 12) {
 
             // HOURS
-            VStack(alignment: .leading, spacing: 6) {
+            VStack(alignment: .leading, spacing: 4) {
                 Text(session.hourTop)
-                    .font(AppTheme.typography.labelMedium)
+                    .font(AppTypography.bodySmall)        // before: labelMedium ❌
                     .foregroundStyle(.black)
 
                 Text(session.hourBottom)
-                    .font(AppTheme.typography.labelMedium)
+                    .font(AppTypography.bodySmall)
                     .foregroundStyle(.black.opacity(0.7))
             }
             .padding(.leading, 12)
@@ -26,32 +27,32 @@ struct ScheduleCard: View {
                 Image("TeacherAvatarPlaceholder")
                     .resizable()
                     .scaledToFill()
-                    .frame(width: 40, height: 40)
+                    .frame(width: 42, height: 42)
                     .clipShape(Circle())
 
                 VStack(alignment: .leading, spacing: 4) {
 
                     Text(session.courseName)
-                        .font(AppTheme.typography.titleSmall)
+                        .font(AppTypography.titleSmall)     // correct title for name
                         .foregroundStyle(.white)
 
                     HStack(spacing: 6) {
                         Image(systemName: "person")
-                            .font(.caption)
+                            .font(AppTypography.caption)     // icons small
                             .foregroundStyle(.white.opacity(0.8))
 
                         Text(session.teacherName)
-                            .font(AppTheme.typography.labelMedium)
+                            .font(AppTypography.bodySmall)
                             .foregroundStyle(.white.opacity(0.9))
                     }
 
                     HStack(spacing: 6) {
                         Image(systemName: "location")
-                            .font(.caption)
+                            .font(AppTypography.caption)
                             .foregroundStyle(.white.opacity(0.8))
 
                         Text(session.campus)
-                            .font(AppTheme.typography.labelMedium)
+                            .font(AppTypography.bodySmall)
                             .foregroundStyle(.white.opacity(0.9))
                     }
                 }
@@ -59,8 +60,8 @@ struct ScheduleCard: View {
                 Spacer()
 
                 Image(systemName: "chevron.right")
+                    .font(AppTypography.titleSmall)
                     .foregroundStyle(.white.opacity(0.9))
-                    .font(.title3)
                     .padding(.trailing, 12)
             }
         }

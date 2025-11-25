@@ -1,21 +1,25 @@
 import SwiftUI
+import Combine
 
 struct GreetingSection: View {
     let name: String
+    let academicPeriod: String
 
     var body: some View {
         VStack(alignment: .leading, spacing: 4) {
 
             Text("Hi \(name)!")
-                .font(AppTheme.typography.titleLarge)
-                .foregroundStyle(AppTheme.colors.textPrimary)
+                .font(AppTypography.titleLarge)
+                .foregroundStyle(AppColors.textPrimary)
 
-            Text("Academic Semester 2025")
-                .font(AppTheme.typography.bodyMedium)
-                .foregroundStyle(AppTheme.colors.brandPrimary)
+            if !academicPeriod.isEmpty {
+                Text(academicPeriod)
+                    .font(AppTypography.bodyMedium)
+                    .foregroundStyle(AppColors.brandPrimary)
+            }
 
             ProgressView(value: 0.3)
-                .tint(AppTheme.colors.brandPrimary)
+                .tint(AppColors.brandPrimary)
         }
     }
 }

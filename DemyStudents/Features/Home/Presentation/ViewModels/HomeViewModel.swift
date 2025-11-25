@@ -1,53 +1,53 @@
-import Foundation
+//
+//  HomeViewModel.swift
+//  DemyStudents
+//
 
+import SwiftUI
+import Combine
+
+@MainActor
 class HomeViewModel: ObservableObject {
 
-    @Published var name: String = ""
-    @Published var academicPeriod: String = ""
+    // MARK: - Top greeting data
+    @Published var name: String = "Student"
+    @Published var academicPeriod: String = "Academic Semester 2025"
 
+    // MARK: - Date pills
     @Published var selectedDate: Date = Date()
     @Published var availableDates: [Date] = []
 
-    @Published var todaySessions: [ScheduleSession] = []
-
-    private let sessionManager = DIContainer.shared.sessionManager
+    // MARK: - Single mock session (for UI preview)
+    @Published var mockSession: ScheduleSession? = nil
 
     init() {
-        loadUser()
         loadDates()
-        loadMockSessions()
+        loadMockSession()
     }
 
-    // MARK: - Load User
-    func loadUser() {
-        if let user = sessionManager.currentUser {
-            self.name = user.fullName
-            self.academicPeriod = user.academicPeriod    // mock for now
-        } else {
-            self.name = "Student"
+    func loadUser(_ session: SessionManager) {
+        // Si ya tienes un usuario real en session, úsalo.
+        if let user = session.currentUser {
+            self.name = user.email         // por ahora solo tienes email
             self.academicPeriod = "Academic Semester 2025"
         }
     }
 
-    // MARK: - Mock Dates
     func loadDates() {
         let today = Date()
-        availableDates = (0..<5).compactMap { day in
-            Calendar.current.date(byAdding: .day, value: day, to: today)
+        self.availableDates = (0..<5).compactMap {
+            Calendar.current.date(byAdding: .day, value: $0, to: today)
         }
     }
 
-    // MARK: - Mock Schedule Sessions
-    func loadMockSessions() {
-        todaySessions = [
-            ScheduleSession(
-                hourTop: "9:41 AM",
-                hourBottom: "9:41 AM",
-                courseName: "Finance Education",
-                teacherName: "Juan Palacios",
-                campus: "Monterrico",
-                avatarUrl: ""
-            )
-        ]
+    func loadMockSession() {
+        self.mockSession = ScheduleSession(
+            hourTop: "9:41 AM",
+            hourBottom: "9:41 AM",
+            courseName: "Finance Education",
+            teacherName: "Juan Palacios",
+            campus: "Monterrico",
+            avatarUrl: ""
+        )
     }
 }
