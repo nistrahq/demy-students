@@ -18,24 +18,45 @@ struct HomeView: View {
                         academicPeriod: vm.academicPeriod
                     )
 
-                    // TODAY’S SCHEDULE
-                    Text("Today’s schedule")
-                        .font(AppTypography.titleMedium)
-                        .foregroundStyle(AppColors.textPrimary)
+                    // MARK: - TODAY’S SCHEDULE
+                    HStack {
+                        Text("Today’s schedule")
+                            .font(AppTypography.titleMedium)
+                            .foregroundStyle(AppColors.textPrimary)
 
-                    // DATE PILLS
-                    DatePillScrollView(
-                        selectedDate: $vm.selectedDate,
+                        Spacer()
+
+                        SeeMoreButton {
+                            // TODO: route later
+                        }
+                    }
+
+                    // MARK: - DATE SCROLL
+                    ScrollSection(
+                        selected: $vm.selectedDate,
                         dates: vm.availableDates
                     )
 
-                    // CARD
+                    // MARK: - CARD
                     if let sessionCard = vm.mockSession {
                         ScheduleCard(
                             session: sessionCard,
                             gradient: AppGradients.orange
                         )
                     }
+
+                    // MARK: - LATEST UPDATES
+                    HStack {
+                        Text("Latest Updates")
+                            .font(AppTypography.titleMedium)
+                            .foregroundStyle(AppColors.textPrimary)
+
+                        Spacer()
+
+                        SeeMoreButton { }
+                    }
+
+                    UpdatesSection(images: ["news1", "news2", "news3"])
                 }
                 .padding(.horizontal)
             }

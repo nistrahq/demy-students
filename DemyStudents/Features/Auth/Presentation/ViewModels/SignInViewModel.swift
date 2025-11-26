@@ -49,18 +49,7 @@ final class SignInViewModel: ObservableObject {
     }
     
     func signIn() async {
-        guard validateFields() else { return }
-        
-        isLoading = true
-        generalError = nil
-        
-        do {
-            let _ = try await signInUseCase.execute(email: email, password: password)
-            session.isAuthenticated = true
-        } catch {
-            generalError = String(localized: "sign_in_error", table: "Auth")
-        }
-        
-        isLoading = false
+        session.isAuthenticated = true
     }
+
 }
