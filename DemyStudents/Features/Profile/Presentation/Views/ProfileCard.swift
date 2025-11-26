@@ -3,6 +3,7 @@ import SwiftUI
 struct ProfileCard: View {
 
     let birthdate: String
+    @Binding var showDatePicker: Bool   
 
     var body: some View {
         VStack(spacing: 0) {
@@ -12,7 +13,8 @@ struct ProfileCard: View {
                 icon: "calendar",
                 title: "Birthday",
                 trailing: birthdate,
-                showChevron: false
+                showChevron: false,
+                onTap: { showDatePicker = true }   
             )
 
             Divider()
@@ -57,7 +59,7 @@ struct ProfileCard: View {
 
             Divider()
 
-            // Terms and Conditions
+            // Terms
             ProfileOptionRow(
                 icon: "pencil",
                 title: "Terms and Conditions",
@@ -83,10 +85,4 @@ struct ProfileCard: View {
         .cornerRadius(24)
         .shadow(color: .black.opacity(0.05), radius: 8, y: 4)
     }
-}
-
-#Preview {
-    ProfileCard(birthdate: "Apr 1, 2025")
-        .padding()
-        .background(AppColors.background)
 }
