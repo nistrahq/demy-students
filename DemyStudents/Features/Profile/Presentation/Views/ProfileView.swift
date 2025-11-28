@@ -2,8 +2,6 @@ import SwiftUI
 
 struct ProfileView: View {
 
-    struct ProfileView: View {
-
     @StateObject private var vm = ProfileViewModel()
 
     @State private var showDatePicker = false
