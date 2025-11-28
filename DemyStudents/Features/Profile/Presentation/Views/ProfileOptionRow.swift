@@ -7,6 +7,7 @@ struct ProfileOptionRow: View {
     let trailing: String?
     let showChevron: Bool
     var destination: AnyView? = nil
+    var onTap: (() -> Void)? = nil  // 👈 AGREGADO
 
     var body: some View {
 
@@ -14,7 +15,13 @@ struct ProfileOptionRow: View {
             NavigationLink(destination: destination) {
                 rowContent
             }
-        } else {
+        }
+        else if let onTap = onTap {   // 👈 Si hay onTap, úsalo
+            Button(action: onTap) {
+                rowContent
+            }
+        }
+        else {
             Button(action: {}) {
                 rowContent
             }
