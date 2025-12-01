@@ -12,7 +12,7 @@ struct ScheduleCard: View {
             // HOURS
             VStack(alignment: .leading, spacing: 4) {
                 Text(session.hourTop)
-                    .font(AppTypography.bodySmall)        // before: labelMedium ❌
+                    .font(AppTypography.bodySmall)
                     .foregroundStyle(.black)
 
                 Text(session.hourBottom)
@@ -33,12 +33,12 @@ struct ScheduleCard: View {
                 VStack(alignment: .leading, spacing: 4) {
 
                     Text(session.courseName)
-                        .font(AppTypography.titleSmall)     // correct title for name
+                        .font(AppTypography.titleSmall)
                         .foregroundStyle(.white)
 
                     HStack(spacing: 6) {
                         Image(systemName: "person")
-                            .font(AppTypography.caption)     // icons small
+                            .font(AppTypography.caption)
                             .foregroundStyle(.white.opacity(0.8))
 
                         Text(session.teacherName)

@@ -60,9 +60,9 @@ struct NavBar: View {
 
     private func label(for tab: AppTab) -> String {
         switch tab {
-        case .home: return "Home"
-        case .profile: return "Profile"
-        case .settings: return "Settings"
+        case .home: return String(localized: "home_title", table: "Home")
+        case .profile: return String(localized: "profile_title", table: "Profile")
+        case .settings: return String(localized: "settings_title", table: "Settings")
         }
     }
 

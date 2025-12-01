@@ -8,7 +8,10 @@ struct HomeView: View {
     var body: some View {
         VStack(alignment: .leading) {
 
-            TopBar(title: "Home", showBack: false)
+            TopBar(
+                title: String(localized: "home_title", table: "Home"),
+                showBack: false
+            )
 
             ScrollView(showsIndicators: false) {
                 VStack(alignment: .leading, spacing: 24) {
@@ -20,7 +23,7 @@ struct HomeView: View {
 
                     // MARK: - TODAY’S SCHEDULE
                     HStack {
-                        Text("Today’s schedule")
+                        Text("todays_schedule", tableName: "Home")
                             .font(AppTypography.titleMedium)
                             .foregroundStyle(AppColors.textPrimary)
 
@@ -47,7 +50,7 @@ struct HomeView: View {
 
                     // MARK: - LATEST UPDATES
                     HStack {
-                        Text("Latest Updates")
+                        Text("latest_updates", tableName: "Home")
                             .font(AppTypography.titleMedium)
                             .foregroundStyle(AppColors.textPrimary)
 

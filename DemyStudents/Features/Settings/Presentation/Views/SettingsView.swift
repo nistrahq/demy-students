@@ -4,12 +4,15 @@ struct SettingsView: View {
     var body: some View {
         VStack(alignment: .leading) {
 
-            TopBar(title: "Settings", showBack: false)
+            TopBar(
+                title: String(localized: "settings_title", table: "Settings"),
+                showBack: false
+            )
 
             ScrollView(showsIndicators: false) {
                 VStack(alignment: .leading, spacing: 24) {
 
-                    Text("configuraciones luego")
+                    Text("settings_later", tableName: "Settings")
                         .foregroundStyle(.gray)
                 }
                 .padding(.horizontal)

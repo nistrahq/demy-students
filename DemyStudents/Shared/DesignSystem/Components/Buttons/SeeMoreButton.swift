@@ -12,7 +12,7 @@ struct SeeMoreButton: View {
     var body: some View {
         Button(action: action) {
             HStack(spacing: 4) {
-                Text("See More")
+                Text("see_more", tableName: "Home")
                     .font(AppTheme.typography.bodySmall)
                     .foregroundStyle(AppTheme.colors.info)
                 Image(systemName: "chevron.right")
