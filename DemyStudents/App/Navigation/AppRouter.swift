@@ -35,7 +35,7 @@ struct AppRouter: View {
                     }
 
                     // BOTTOM NAV BAR
-                    BottomNavBar(selected: $selectedTab)
+                    NavBar(selected: $selectedTab)
                 }
                 .ignoresSafeArea(.keyboard)
 

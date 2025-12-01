@@ -2,14 +2,20 @@ import SwiftUI
 
 struct SettingsView: View {
     var body: some View {
-        VStack {
-            Text("Settings")
-                .font(.title)
-                .padding()
+        VStack(alignment: .leading) {
 
-            Text("configuraciones luego")
-                .foregroundStyle(.gray)
+            TopBar(title: "Settings", showBack: false)
+
+            ScrollView(showsIndicators: false) {
+                VStack(alignment: .leading, spacing: 24) {
+
+                    Text("configuraciones luego")
+                        .foregroundStyle(.gray)
+                }
+                .padding(.horizontal)
+                .padding(.top, 8)
+            }
         }
-        .navigationTitle("Settings")
+        .background(AppColors.background)
     }
 }

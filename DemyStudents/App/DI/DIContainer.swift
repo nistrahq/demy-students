@@ -30,4 +30,8 @@ final class DIContainer {
     lazy var signInUseCase: SignInUseCase = {
         SignInUseCase(repository: authRepository)
     }()
+    
+    lazy var homeRemoteDataSource: HomeRemoteDataSource = {
+        HomeRemoteDataSourceImpl(client: httpClient)
+    }()
 }

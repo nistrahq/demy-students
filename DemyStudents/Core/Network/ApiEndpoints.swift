@@ -11,4 +11,8 @@ enum ApiEndpoints {
     enum Auth {
         static let signIn = "/authentication/sign-in"
     }
+    
+    enum Students {
+        static let me = "/students/me"
+    }
 }
