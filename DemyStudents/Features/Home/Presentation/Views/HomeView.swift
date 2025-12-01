@@ -56,7 +56,7 @@ struct HomeView: View {
                         SeeMoreButton { }
                     }
 
-                    UpdatesSection(images: ["news1", "news2", "news3"])
+                    UpdatesSection(images: ["UpdatesSectionNews1", "UpdatesSectionNews2", "UpdatesSectionNews3"])
                 }
                 .padding(.horizontal)
             }

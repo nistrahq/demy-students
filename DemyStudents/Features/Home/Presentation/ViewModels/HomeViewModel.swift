@@ -4,33 +4,59 @@ import Combine
 @MainActor
 class HomeViewModel: ObservableObject {
 
-    @Published var name: String = "Student"
-    @Published var academicPeriod: String = "Academic Semester 2025"
+    // MARK: - Published
+    @Published var name: String = ""
+    @Published var academicPeriod: String = ""
 
     @Published var selectedDate: Date = Date()
     @Published var availableDates: [Date] = []
 
     @Published var mockSession: ScheduleSession? = nil
 
-    init() {
+    // MARK: - Dependencies
+    private let getCurrentStudentUseCase: GetCurrentStudentUseCase
+
+    init(
+        getCurrentStudentUseCase: GetCurrentStudentUseCase? = nil
+    ) {
+        if let useCase = getCurrentStudentUseCase {
+            self.getCurrentStudentUseCase = useCase
+        } else {
+            // Create default use case
+            let remote = DIContainer.shared.homeRemoteDataSource
+            let repository = HomeRepositoryImpl(remote: remote)
+            self.getCurrentStudentUseCase = GetCurrentStudentUseCaseImpl(repository: repository)
+        }
+
+        // Load mock data
         loadDates()
         loadMockSession()
     }
 
-    // NO usa SessionManager
+    // MARK: - Load student name
     func loadUser() {
-        // Lo dejamos vacío por ahora
-        // Más adelante usaremos el endpoint real de Students
+        Task {
+            print("🔥 making request to /students/me…")
+
+            do {
+                let student = try await getCurrentStudentUseCase.execute()
+                self.name = student.fullName
+                print("DEBUG NAME:", self.name)
+            } catch {
+                print("Error loading student:", error)
+            }
+        }
     }
 
-    func loadDates() {
+    // MARK: - Existing mock data
+    private func loadDates() {
         let today = Date()
-        self.availableDates = (0..<5).compactMap {
+        availableDates = (0..<5).compactMap {
             Calendar.current.date(byAdding: .day, value: $0, to: today)
         }
     }
 
-    func loadMockSession() {
+    private func loadMockSession() {
         self.mockSession = ScheduleSession(
             hourTop: "9:41 AM",
             hourBottom: "9:41 AM",

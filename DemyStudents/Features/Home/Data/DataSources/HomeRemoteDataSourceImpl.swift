@@ -8,7 +8,10 @@ final class HomeRemoteDataSourceImpl: HomeRemoteDataSource {
     }
 
     func getStudent(by id: Int) async throws -> StudentDTO {
-        let path = "/api/v1/students/\(id)"   // luego lo puedes mover a ApiEndpoints
-        return try await client.get(path)
+        try await client.get("/students/\(id)")
+    }
+
+    func getCurrentStudent() async throws -> StudentDTO {
+        return try await client.get(ApiEndpoints.Students.me)
     }
 }
