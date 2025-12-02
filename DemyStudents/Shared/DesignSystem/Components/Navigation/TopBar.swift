@@ -5,6 +5,16 @@ struct TopBar: View {
     let showBack: Bool
     var onBack: (() -> Void)? = nil
 
+    init(
+        title: String,
+        showBack: Bool = false,
+        onBack: (() -> Void)? = nil
+    ) {
+        self.title = title
+        self.showBack = showBack
+        self.onBack = onBack
+    }
+
     var body: some View {
         HStack {
             if showBack {

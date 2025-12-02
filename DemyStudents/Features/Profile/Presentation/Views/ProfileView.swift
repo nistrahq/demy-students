@@ -9,7 +9,10 @@ struct ProfileView: View {
     var body: some View {
         VStack(spacing: 0) {
 
-            TopBar(title: "Profile", showBack: true)
+            TopBar(
+                title: String(localized: "profile_title", table: "Profile"),
+                showBack: true
+            )
 
             ScrollView(showsIndicators: false) {
                 VStack(spacing: 24) {

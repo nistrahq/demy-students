@@ -1,91 +1,91 @@
 {
   "sourceLanguage" : "en",
   "strings" : {
-    "allow" : {
+    "greetings" : {
       "extractionState" : "manual",
       "localizations" : {
         "en" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Allow"
+            "value" : "Hi %@!"
           }
         },
         "es-419" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Permitir"
+            "value" : "Hola %@!"
           }
         }
       }
     },
-    "ask_app_not_to_track" : {
+    "home_title" : {
       "extractionState" : "manual",
       "localizations" : {
         "en" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Ask App not to track"
+            "value" : "Home"
           }
         },
         "es-419" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Solicitar a la app no rastrear"
+            "value" : "Inicio"
           }
         }
       }
     },
-    "cancel" : {
+    "latest_updates" : {
       "extractionState" : "manual",
       "localizations" : {
         "en" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Cancel"
+            "value" : "Latest Updates"
           }
         },
         "es-419" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Cancelar"
+            "value" : "Últimas actualizaciones"
           }
         }
       }
     },
-    "continue" : {
+    "see_more" : {
       "extractionState" : "manual",
       "localizations" : {
         "en" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Continue"
+            "value" : "See more"
           }
         },
         "es-419" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Continuar"
+            "value" : "Ver más"
           }
         }
       }
     },
-    "hello" : {
+    "todays_schedule" : {
       "extractionState" : "manual",
       "localizations" : {
         "en" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Hello"
+            "value" : "Today’s Schedule"
           }
         },
         "es-419" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Hola"
+            "value" : "Horario de hoy"
           }
         }
       }
-    },
+    }
   },
   "version" : "1.1"
 }
