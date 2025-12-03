@@ -31,7 +31,21 @@ final class DIContainer {
         SignInUseCase(repository: authRepository)
     }()
     
+    // MARK: - Home
     lazy var homeRemoteDataSource: HomeRemoteDataSource = {
         HomeRemoteDataSourceImpl(client: httpClient)
+    }()
+    
+    // MARK: - Schedule
+    lazy var scheduleRemoteDataSource: ScheduleRemoteDataSource = {
+        ScheduleRemoteDataSourceImpl(client: httpClient)
+    }()
+    
+    lazy var scheduleRepository: ScheduleRepository = {
+        ScheduleRepositoryImpl(remote: scheduleRemoteDataSource)
+    }()
+    
+    lazy var getScheduleUseCase: GetScheduleUseCase = {
+        GetScheduleUseCase(repository: scheduleRepository)
     }()
 }

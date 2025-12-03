@@ -6,7 +6,8 @@ enum StudentMapper {
             id: dto.id,
             fullName: "\(dto.firstName) \(dto.lastName)",
             email: dto.email,
-            academyId: dto.academyId
+            academyId: dto.academyId,
+            userId: dto.userId
         )
     }
 }

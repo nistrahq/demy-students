@@ -16,19 +16,60 @@ struct ScheduleView: View {
 
             // 🔹 Selector horizontal de fechas
             ScrollSection(selected: $selectedDate, dates: viewModel.availableDates)
+                .onChange(of: selectedDate) { newDate in
+                    viewModel.filterSessionsByDate(newDate)
+                }
 
             // 🔹 Lista de sesiones (usando tu ScheduleCard)
-            ScrollView(showsIndicators: false) {
+            if viewModel.isLoading {
+                Spacer()
+                ProgressView()
+                    .scaleEffect(1.5)
+                Spacer()
+            } else if let errorMessage = viewModel.errorMessage {
+                Spacer()
                 VStack(spacing: 16) {
-                    ForEach(viewModel.sessions) { session in
-                        ScheduleCard(
-                            session: session,
-                            gradient: viewModel.gradient(for: session)
-                        )
+                    Image(systemName: "exclamationmark.triangle")
+                        .font(.system(size: 48))
+                        .foregroundColor(.orange)
+                    Text(errorMessage)
+                        .font(AppTypography.bodyMedium)
+                        .foregroundColor(.secondary)
+                        .multilineTextAlignment(.center)
+                        .padding(.horizontal, 32)
+                    Button("Retry") {
+                        viewModel.loadSchedule()
                     }
+                    .padding(.horizontal, 24)
+                    .padding(.vertical, 12)
+                    .background(AppColors.brandPrimary.opacity(0.2))
+                    .cornerRadius(12)
                 }
-                .padding(.horizontal, 16)
-                .padding(.top, 8)
+                Spacer()
+            } else if viewModel.sessions.isEmpty {
+                Spacer()
+                VStack(spacing: 16) {
+                    Image(systemName: "calendar.badge.exclamationmark")
+                        .font(.system(size: 48))
+                        .foregroundColor(.gray)
+                    Text("No classes scheduled for this day")
+                        .font(AppTypography.bodyMedium)
+                        .foregroundColor(.secondary)
+                }
+                Spacer()
+            } else {
+                ScrollView(showsIndicators: false) {
+                    VStack(spacing: 16) {
+                        ForEach(viewModel.sessions) { session in
+                            ScheduleCard(
+                                session: session,
+                                gradient: viewModel.gradient(for: session)
+                            )
+                        }
+                    }
+                    .padding(.horizontal, 16)
+                    .padding(.top, 8)
+                }
             }
 
             Spacer()
@@ -60,8 +101,7 @@ struct ScheduleView: View {
         .navigationTitle("Schedule")
         .navigationBarTitleDisplayMode(.inline)
         .onAppear {
-            viewModel.loadMockData()
+            viewModel.loadSchedule()
         }
     }
 }
-

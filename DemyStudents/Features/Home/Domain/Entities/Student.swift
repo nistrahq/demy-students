@@ -5,4 +5,5 @@ struct Student: Identifiable, Equatable {
     let fullName: String
     let email: String
     let academyId: Int
+    let userId: Int
 }

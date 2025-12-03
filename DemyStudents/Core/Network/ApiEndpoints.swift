@@ -15,4 +15,10 @@ enum ApiEndpoints {
     enum Students {
         static let me = "/students/me"
     }
+    
+    enum Schedules {
+        static func byStudent(_ userId: Int) -> String {
+            "/schedules/by-student/\(userId)"
+        }
+    }
 }
