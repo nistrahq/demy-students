@@ -22,7 +22,8 @@ struct ProfileView: View {
                     )
 
                     ProfileCard(
-                        birthdate: vm.birthdate
+                        language: vm.selectedLanguage, birthdate: vm.birthdate,        
+                        showDatePicker: $showDatePicker
                     )
                 }
                 .padding(.horizontal)
