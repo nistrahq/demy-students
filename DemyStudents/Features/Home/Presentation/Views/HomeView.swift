@@ -4,6 +4,7 @@ struct HomeView: View {
 
     @EnvironmentObject var session: SessionManager
     @StateObject private var vm = HomeViewModel()
+    @State private var navigateToSchedule = false
 
     var body: some View {
         VStack(alignment: .leading) {
