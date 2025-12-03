@@ -22,7 +22,7 @@ struct HomeView: View {
                         academicPeriod: vm.academicPeriod
                     )
 
-                    // MARK: - TODAY’S SCHEDULE
+                    // MARK: - TODAY'S SCHEDULE
                     HStack {
                         Text("todays_schedule", tableName: "Home")
                             .font(AppTypography.titleMedium)
@@ -40,18 +40,32 @@ struct HomeView: View {
                         selected: $vm.selectedDate,
                         dates: vm.availableDates
                     )
+                    .onChange(of: vm.selectedDate) {
+                        vm.updateCurrentSession()
+                    }
 
-                    // MARK: - CARD
-                    if let sessionCard = vm.mockSession {
+                    // MARK: - CARD or NO CLASSES MESSAGE
+                    if let sessionCard = vm.currentSession {
                         ScheduleCard(
                             session: sessionCard,
-                            gradient: AppGradients.orange
+                            gradient: vm.gradient(for: sessionCard)
                         )
                         .onTapGesture {
                             navigateToSchedule = true
                         }
+                    } else if let message = vm.noClassesMessage {
+                        VStack(spacing: 12) {
+                            Image(systemName: "calendar.badge.exclamationmark")
+                                .font(.system(size: 40))
+                                .foregroundColor(.gray)
+                            Text(message)
+                                .font(AppTypography.bodyMedium)
+                                .foregroundColor(.secondary)
+                                .multilineTextAlignment(.center)
+                        }
+                        .frame(maxWidth: .infinity)
+                        .padding(.vertical, 32)
                     }
-
 
                     // MARK: - LATEST UPDATES
                     HStack {

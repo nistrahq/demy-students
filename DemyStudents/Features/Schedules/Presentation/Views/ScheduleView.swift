@@ -16,8 +16,8 @@ struct ScheduleView: View {
 
             // 🔹 Selector horizontal de fechas
             ScrollSection(selected: $selectedDate, dates: viewModel.availableDates)
-                .onChange(of: selectedDate) { newDate in
-                    viewModel.filterSessionsByDate(newDate)
+                .onChange(of: selectedDate) {
+                    viewModel.filterSessionsByDate(selectedDate)
                 }
 
             // 🔹 Lista de sesiones (usando tu ScheduleCard)
@@ -37,7 +37,7 @@ struct ScheduleView: View {
                         .foregroundColor(.secondary)
                         .multilineTextAlignment(.center)
                         .padding(.horizontal, 32)
-                    Button("Retry") {
+                    Button(String(localized: "retry", table: "Schedules")) {
                         viewModel.loadSchedule()
                     }
                     .padding(.horizontal, 24)
@@ -52,7 +52,7 @@ struct ScheduleView: View {
                     Image(systemName: "calendar.badge.exclamationmark")
                         .font(.system(size: 48))
                         .foregroundColor(.gray)
-                    Text("No classes scheduled for this day")
+                    Text("no_classes_scheduled", tableName: "Schedules")
                         .font(AppTypography.bodyMedium)
                         .foregroundColor(.secondary)
                 }
@@ -77,7 +77,7 @@ struct ScheduleView: View {
             Button(action: {
                 print("Continue tapped")
             }) {
-                Text("Continue")
+                Text("continue", tableName: "Schedules")
                     .font(AppTypography.titleSmall)
                     .foregroundStyle(.black)
                     .frame(maxWidth: .infinity)
@@ -98,7 +98,7 @@ struct ScheduleView: View {
             .padding(.horizontal, 80)
             .padding(.bottom, 20)
         }
-        .navigationTitle("Schedule")
+        .navigationTitle(String(localized: "schedule_title", table: "Schedules"))
         .navigationBarTitleDisplayMode(.inline)
         .onAppear {
             viewModel.loadSchedule()

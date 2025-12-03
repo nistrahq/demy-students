@@ -52,11 +52,11 @@ final class ScheduleViewModel: ObservableObject {
                 self.schedule = fetchedSchedule
                 
                 // Transform to ScheduleSession for display
-                updateSessions()
+                updateSessions(for: Date())
                 
             } catch {
                 print("Error loading schedule:", error)
-                errorMessage = "Failed to load schedule. Please try again."
+                errorMessage = String(localized: "error_loading_schedule", table: "Schedules")
             }
             
             isLoading = false
