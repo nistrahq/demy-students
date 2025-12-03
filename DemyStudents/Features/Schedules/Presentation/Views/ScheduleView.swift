@@ -9,26 +9,66 @@ import SwiftUI
 
 struct ScheduleView: View {
     @StateObject private var viewModel = ScheduleViewModel()
-    @State private var selectedDate: Date = Date()
 
     var body: some View {
         VStack(spacing: 16) {
 
             // 🔹 Selector horizontal de fechas
-            ScrollSection(selected: $selectedDate, dates: viewModel.availableDates)
+            ScrollSection(selected: $viewModel.selectedDate, dates: viewModel.availableDates)
+                .onChange(of: viewModel.selectedDate) {
+                    viewModel.filterSessionsByDate(viewModel.selectedDate)
+                }
 
             // 🔹 Lista de sesiones (usando tu ScheduleCard)
-            ScrollView(showsIndicators: false) {
+            if viewModel.isLoading {
+                Spacer()
+                ProgressView()
+                    .scaleEffect(1.5)
+                Spacer()
+            } else if let errorMessage = viewModel.errorMessage {
+                Spacer()
                 VStack(spacing: 16) {
-                    ForEach(viewModel.sessions) { session in
-                        ScheduleCard(
-                            session: session,
-                            gradient: viewModel.gradient(for: session)
-                        )
+                    Image(systemName: "exclamationmark.triangle")
+                        .font(.system(size: 48))
+                        .foregroundColor(.orange)
+                    Text(errorMessage)
+                        .font(AppTypography.bodyMedium)
+                        .foregroundColor(.secondary)
+                        .multilineTextAlignment(.center)
+                        .padding(.horizontal, 32)
+                    Button(String(localized: "retry", table: "Schedules")) {
+                        viewModel.loadSchedule()
                     }
+                    .padding(.horizontal, 24)
+                    .padding(.vertical, 12)
+                    .background(AppColors.brandPrimary.opacity(0.2))
+                    .cornerRadius(12)
                 }
-                .padding(.horizontal, 16)
-                .padding(.top, 8)
+                Spacer()
+            } else if viewModel.sessions.isEmpty {
+                Spacer()
+                VStack(spacing: 16) {
+                    Image(systemName: "calendar.badge.exclamationmark")
+                        .font(.system(size: 48))
+                        .foregroundColor(.gray)
+                    Text("no_classes_scheduled", tableName: "Schedules")
+                        .font(AppTypography.bodyMedium)
+                        .foregroundColor(.secondary)
+                }
+                Spacer()
+            } else {
+                ScrollView(showsIndicators: false) {
+                    VStack(spacing: 16) {
+                        ForEach(viewModel.sessions) { session in
+                            ScheduleCard(
+                                session: session,
+                                gradient: viewModel.gradient(for: session)
+                            )
+                        }
+                    }
+                    .padding(.horizontal, 16)
+                    .padding(.top, 8)
+                }
             }
 
             Spacer()
@@ -36,7 +76,7 @@ struct ScheduleView: View {
             Button(action: {
                 print("Continue tapped")
             }) {
-                Text("Continue")
+                Text("continue", tableName: "Schedules")
                     .font(AppTypography.titleSmall)
                     .foregroundStyle(.black)
                     .frame(maxWidth: .infinity)
@@ -57,11 +97,10 @@ struct ScheduleView: View {
             .padding(.horizontal, 80)
             .padding(.bottom, 20)
         }
-        .navigationTitle("Schedule")
+        .navigationTitle(String(localized: "schedule_title", table: "Schedules"))
         .navigationBarTitleDisplayMode(.inline)
         .onAppear {
-            viewModel.loadMockData()
+            viewModel.loadSchedule()
         }
     }
 }
-
