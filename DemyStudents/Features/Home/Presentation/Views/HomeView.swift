@@ -68,15 +68,9 @@ struct HomeView: View {
                     }
 
                     // MARK: - LATEST UPDATES
-                    HStack {
-                        Text("latest_updates", tableName: "Home")
-                            .font(AppTypography.titleMedium)
-                            .foregroundStyle(AppColors.textPrimary)
-
-                        Spacer()
-
-                        SeeMoreButton { }
-                    }
+                    Text("latest_updates", tableName: "Home")
+                        .font(AppTypography.titleMedium)
+                        .foregroundStyle(AppColors.textPrimary)
 
                      UpdatesSection(
                         images: ["UpdatesSectionNews1", "UpdatesSectionNews2", "UpdatesSectionNews3"]
