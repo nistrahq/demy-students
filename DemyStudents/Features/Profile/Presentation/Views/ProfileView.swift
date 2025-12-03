@@ -24,8 +24,8 @@ struct ProfileView: View {
                     )
 
                     ProfileCard(
-                        birthdate: vm.birthdate,
-                        showDatePicker: $showDatePicker   
+                        language: vm.selectedLanguage, birthdate: vm.birthdate,        
+                        showDatePicker: $showDatePicker
                     )
                 }
                 .padding(.horizontal)
@@ -33,8 +33,8 @@ struct ProfileView: View {
             }
         }
         .background(AppColors.background)
-        .sheet(isPresented: $showDatePicker) {    
-            BirthdaySheet(selectedDate: .constant(Date()))
+        .sheet(isPresented: $showDatePicker) {
+            BirthdaySheet(selectedDate: $vm.selectedBirthdate)
                 .presentationDetents([.height(480)])
                 .presentationDragIndicator(.visible)
         }

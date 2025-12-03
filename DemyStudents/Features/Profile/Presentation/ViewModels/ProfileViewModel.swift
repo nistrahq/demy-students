@@ -6,7 +6,15 @@ final class ProfileViewModel: ObservableObject {
     // MARK: - Published UI Data
     @Published var fullName: String = ""
     @Published var email: String = ""
-    @Published var birthdate: String = ""
+    @Published var selectedLanguage: String = Locale.current.localizedString(forLanguageCode: Locale.current.languageCode ?? "en")?.capitalized ?? "English"
+
+    @Published var selectedBirthdate: Date = Date()
+
+    var birthdate: String {
+        let formatter = DateFormatter()
+        formatter.dateStyle = .medium
+        return formatter.string(from: selectedBirthdate)
+    }
     @Published var photoURL: String = ""
 
     init() {
@@ -17,7 +25,6 @@ final class ProfileViewModel: ObservableObject {
     private func loadMockProfile() {
         self.fullName = "Paul Salim Crispin Vilca"
         self.email = "pscvilca@correo.es"
-        self.birthdate = "Apr 1, 2025"
         self.photoURL = "https://i.pravatar.cc/150?img=1"
     }
 }

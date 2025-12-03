@@ -1,18 +1,15 @@
 import SwiftUI
 
 struct BirthdaySheet: View {
-
     @Binding var selectedDate: Date
 
     var body: some View {
         VStack(spacing: 16) {
 
-            // Header
             HStack {
                 Text("Date")
                     .font(AppTypography.titleMedium)
                     .foregroundColor(AppColors.textPrimary)
-
                 Spacer()
             }
             .padding(.horizontal)
