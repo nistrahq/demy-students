@@ -9,15 +9,14 @@ import SwiftUI
 
 struct ScheduleView: View {
     @StateObject private var viewModel = ScheduleViewModel()
-    @State private var selectedDate: Date = Date()
 
     var body: some View {
         VStack(spacing: 16) {
 
             // 🔹 Selector horizontal de fechas
-            ScrollSection(selected: $selectedDate, dates: viewModel.availableDates)
-                .onChange(of: selectedDate) {
-                    viewModel.filterSessionsByDate(selectedDate)
+            ScrollSection(selected: $viewModel.selectedDate, dates: viewModel.availableDates)
+                .onChange(of: viewModel.selectedDate) {
+                    viewModel.filterSessionsByDate(viewModel.selectedDate)
                 }
 
             // 🔹 Lista de sesiones (usando tu ScheduleCard)

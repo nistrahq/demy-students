@@ -12,6 +12,7 @@ import Combine
 @MainActor
 final class ScheduleViewModel: ObservableObject {
     @Published var sessions: [ScheduleSession] = []
+    @Published var selectedDate: Date = Date()
     @Published var availableDates: [Date] = []
     @Published var isLoading: Bool = false
     @Published var errorMessage: String?
@@ -108,9 +109,17 @@ final class ScheduleViewModel: ObservableObject {
         let calendar = Calendar.current
         let today = Date()
         
-        // Generate next 7 days
+        // Normalize today to start of day
+        let normalizedToday = calendar.startOfDay(for: today)
+        
+        // Generate next 7 days (normalized)
         availableDates = (0..<7).compactMap {
-            calendar.date(byAdding: .day, value: $0, to: today)
+            calendar.date(byAdding: .day, value: $0, to: normalizedToday)
+        }
+        
+        // Set selected date to today (normalized)
+        if let firstDate = availableDates.first {
+            selectedDate = firstDate
         }
     }
     

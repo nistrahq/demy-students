@@ -172,9 +172,20 @@ class HomeViewModel: ObservableObject {
 
     // MARK: - Existing mock data
     private func loadDates() {
+        let calendar = Calendar.current
         let today = Date()
+        
+        // Normalize today to start of day
+        let normalizedToday = calendar.startOfDay(for: today)
+        
+        // Generate next 5 days (normalized)
         availableDates = (0..<5).compactMap {
-            Calendar.current.date(byAdding: .day, value: $0, to: today)
+            calendar.date(byAdding: .day, value: $0, to: normalizedToday)
+        }
+        
+        // Set selected date to today (normalized)
+        if let firstDate = availableDates.first {
+            selectedDate = firstDate
         }
     }
     
