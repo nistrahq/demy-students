@@ -4,6 +4,7 @@ struct HomeView: View {
 
     @EnvironmentObject var session: SessionManager
     @StateObject private var vm = HomeViewModel()
+    @State private var navigateToSchedule = false
 
     var body: some View {
         VStack(alignment: .leading) {
@@ -30,7 +31,7 @@ struct HomeView: View {
                         Spacer()
 
                         SeeMoreButton {
-                            // TODO: route later
+                            navigateToSchedule = true
                         }
                     }
 
@@ -46,7 +47,11 @@ struct HomeView: View {
                             session: sessionCard,
                             gradient: AppGradients.orange
                         )
+                        .onTapGesture {
+                            navigateToSchedule = true
+                        }
                     }
+
 
                     // MARK: - LATEST UPDATES
                     HStack {
@@ -59,12 +64,17 @@ struct HomeView: View {
                         SeeMoreButton { }
                     }
 
-                    UpdatesSection(images: ["UpdatesSectionNews1", "UpdatesSectionNews2", "UpdatesSectionNews3"])
+                     UpdatesSection(
+                        images: ["UpdatesSectionNews1", "UpdatesSectionNews2", "UpdatesSectionNews3"]
+                    )
                 }
                 .padding(.horizontal)
-            }
-            .onAppear {
-                vm.loadUser()
+                }
+                .onAppear {
+                    vm.loadUser()
+                }
+            .navigationDestination(isPresented: $navigateToSchedule) {
+                ScheduleView()
             }
         }
     }
