@@ -38,7 +38,9 @@ final class HomeRepositoryImpl: HomeRepository {
             id: dto.id,
             fullName: fullName,
             email: dto.email,
-            academyId: dto.academyId
+            academyId: dto.academyId,
+            userId: dto.userId,
+            birthDate: dto.birthDate
         )
 
         print("🎒 [Repository] Student mapped → \(student)")

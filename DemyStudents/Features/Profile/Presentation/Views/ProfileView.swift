@@ -4,8 +4,6 @@ struct ProfileView: View {
 
     @StateObject private var vm = ProfileViewModel()
 
-    @State private var showDatePicker = false
-
     var body: some View {
         VStack(spacing: 0) {
 
@@ -33,10 +31,8 @@ struct ProfileView: View {
             }
         }
         .background(AppColors.background)
-        .sheet(isPresented: $showDatePicker) {
-            BirthdaySheet(selectedDate: $vm.selectedBirthdate)
-                .presentationDetents([.height(480)])
-                .presentationDragIndicator(.visible)
+        .onAppear {
+            vm.loadProfile()
         }
     }
 }
