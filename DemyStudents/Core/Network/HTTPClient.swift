@@ -42,4 +42,29 @@ final class HTTPClient {
         
         return try JSONDecoder().decode(R.self, from: data)
     }
+    
+    func get<R: Codable>(_ path: String) async throws -> R {
+        
+        guard let url = URL(string: ApiEndpoints.baseURL + path) else {
+            throw URLError(.badURL)
+        }
+        
+        var request = URLRequest(url: url)
+        request.httpMethod = "GET"
+        request.setValue("application/json", forHTTPHeaderField: "Accept")
+        
+        if let token = try? keychain.get("accessToken") {
+            request.setValue("Bearer \(token)", forHTTPHeaderField: "Authorization")
+        }
+        
+        let (data, response) = try await URLSession.shared.data(for: request)
+        
+        guard let http = response as? HTTPURLResponse,
+              (200...299).contains(http.statusCode) else {
+            throw URLError(.badServerResponse)
+        }
+        
+        return try JSONDecoder().decode(R.self, from: data)
+    }
+
 }

@@ -9,9 +9,19 @@ import SwiftUI
 
 @main
 struct DemyStudentsApp: App {
+//    init() {
+//        try? KeychainStorage().delete("accessToken")
+//    }
+    
+    @StateObject var session =
+        SessionManager(keychain: DIContainer.shared.keychain)
+    
+    let container = DIContainer.shared
+    
     var body: some Scene {
         WindowGroup {
-            ContentView()
+            AppRouter(container: container)
+                .environmentObject(session)
         }
     }
 }

@@ -20,8 +20,16 @@ final class SessionManager: ObservableObject {
         self.isAuthenticated = (try? keychain.get("accessToken")) != nil
     }
     
-    func logout() {
+    func signIn() {
+        // El token ya fue guardado por el repositorio
+        isAuthenticated = true
+    }
+    
+    func signOut() {
+        // Eliminar el token del keychain
         try? keychain.delete("accessToken")
+        
+        // Actualizar el estado de autenticación
         isAuthenticated = false
     }
 }
