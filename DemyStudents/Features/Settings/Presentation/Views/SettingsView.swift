@@ -9,7 +9,7 @@ struct SettingsView: View {
     @State private var showLogoutModal = false
 
     var body: some View {
-        ZStack {  
+        ZStack {
 
             VStack(spacing: 0) {
 
@@ -103,7 +103,7 @@ struct SettingsView: View {
                 buttonText: "Log Out",
                 buttonColor: .red,
                 onButtonTap: {
-                    session.isAuthenticated = false
+                    session.signOut()
                 },
                 isPresented: $showLogoutModal
             )

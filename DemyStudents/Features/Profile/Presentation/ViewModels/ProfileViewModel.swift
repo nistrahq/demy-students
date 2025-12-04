@@ -7,18 +7,11 @@ final class ProfileViewModel: ObservableObject {
     // MARK: - Published UI Data
     @Published var fullName: String = ""
     @Published var email: String = ""
-    @Published var selectedLanguage: String = Locale.current.localizedString(forLanguageCode: Locale.current.languageCode ?? "en")?.capitalized ?? "English"
-
-    @Published var selectedBirthdate: Date = Date()
-
-    var birthdate: String {
-        let formatter = DateFormatter()
-        formatter.dateStyle = .medium
-        return formatter.string(from: selectedBirthdate)
-    }
+    @Published var birthdate: String = ""
     @Published var photoURL: String = ""
     @Published var isLoading: Bool = false
     @Published var errorMessage: String?
+    @Published var selectedLanguage: String = Locale.current.localizedString(forLanguageCode: Locale.current.languageCode ?? "en")?.capitalized ?? "English"
 
     // MARK: - Dependencies
     private let getCurrentStudentUseCase: GetCurrentStudentUseCase

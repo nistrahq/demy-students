@@ -7,9 +7,13 @@
 
 import Foundation
 import SwiftUI
+import Combine
 
 @MainActor
 final class SettingsViewModel: ObservableObject {
-
+    
+    // MARK: - Published Properties
+    // Placeholder para futuras propiedades de estado
+    
     init() {}
 }

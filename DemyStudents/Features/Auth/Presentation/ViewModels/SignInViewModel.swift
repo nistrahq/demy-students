@@ -56,7 +56,7 @@ final class SignInViewModel: ObservableObject {
         
         do {
             let _ = try await signInUseCase.execute(email: email, password: password)
-            session.isAuthenticated = true
+            session.signIn()
         } catch {
             generalError = String(localized: "sign_in_error", table: "Auth")
         }
