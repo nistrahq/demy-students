@@ -11,7 +11,9 @@ final class ProfileViewModel: ObservableObject {
     @Published var photoURL: String = ""
     @Published var isLoading: Bool = false
     @Published var errorMessage: String?
-    @Published var selectedLanguage: String = Locale.current.localizedString(forLanguageCode: Locale.current.languageCode ?? "en")?.capitalized ?? "English"
+    @Published var selectedLanguage: String = Locale.current
+        .localizedString(forLanguageCode: Locale.current.languageCode ?? "en")?
+        .capitalized ?? String(localized: "language_english", table: "Profile")
 
     // MARK: - Dependencies
     private let getCurrentStudentUseCase: GetCurrentStudentUseCase
@@ -46,7 +48,7 @@ final class ProfileViewModel: ObservableObject {
                 isLoading = false
             } catch {
                 print("❌ Error loading profile:", error)
-                errorMessage = "Error al cargar el perfil"
+                errorMessage = String(localized: "profile_load_error", table: "Profile")
                 isLoading = false
             }
         }
@@ -62,8 +64,8 @@ final class ProfileViewModel: ObservableObject {
         
         if let date = inputFormatter.date(from: dateString) {
             let outputFormatter = DateFormatter()
-            outputFormatter.dateFormat = "MMM d, yyyy"
-            outputFormatter.locale = Locale(identifier: "es_ES")
+            outputFormatter.locale = .current
+            outputFormatter.setLocalizedDateFormatFromTemplate("MMM d, yyyy")
             return outputFormatter.string(from: date)
         }
         

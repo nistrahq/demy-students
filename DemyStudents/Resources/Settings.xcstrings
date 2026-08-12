@@ -1,6 +1,76 @@
 {
   "sourceLanguage" : "en",
   "strings" : {
+    "accept" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : { "stringUnit" : { "state" : "translated", "value" : "Accept" } },
+        "es-419" : { "stringUnit" : { "state" : "translated", "value" : "Aceptar" } }
+      }
+    },
+    "close_app" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : { "stringUnit" : { "state" : "translated", "value" : "Close app" } },
+        "es-419" : { "stringUnit" : { "state" : "translated", "value" : "Cerrar aplicación" } }
+      }
+    },
+    "decline" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : { "stringUnit" : { "state" : "translated", "value" : "Decline" } },
+        "es-419" : { "stringUnit" : { "state" : "translated", "value" : "Rechazar" } }
+      }
+    },
+    "last_updated" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : { "stringUnit" : { "state" : "translated", "value" : "Last updated: December 2025" } },
+        "es-419" : { "stringUnit" : { "state" : "translated", "value" : "Última actualización: diciembre de 2025" } }
+      }
+    },
+    "legal_required" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : { "stringUnit" : { "state" : "translated", "value" : "Acceptance is required" } },
+        "es-419" : { "stringUnit" : { "state" : "translated", "value" : "Es necesario aceptar este documento" } }
+      }
+    },
+    "log_out" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : { "stringUnit" : { "state" : "translated", "value" : "Log out" } },
+        "es-419" : { "stringUnit" : { "state" : "translated", "value" : "Cerrar sesión" } }
+      }
+    },
+    "log_out_message" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : { "stringUnit" : { "state" : "translated", "value" : "Are you sure you want to log out of your Demy account?" } },
+        "es-419" : { "stringUnit" : { "state" : "translated", "value" : "¿Seguro que quieres cerrar la sesión de tu cuenta de Demy?" } }
+      }
+    },
+    "log_out_title" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : { "stringUnit" : { "state" : "translated", "value" : "Log out?" } },
+        "es-419" : { "stringUnit" : { "state" : "translated", "value" : "¿Cerrar sesión?" } }
+      }
+    },
+    "privacy_accept_required" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : { "stringUnit" : { "state" : "translated", "value" : "You must accept the Privacy Policy to continue using Demy." } },
+        "es-419" : { "stringUnit" : { "state" : "translated", "value" : "Debes aceptar la Política de privacidad para continuar usando Demy." } }
+      }
+    },
+    "privacy_policy" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : { "stringUnit" : { "state" : "translated", "value" : "Privacy Policy" } },
+        "es-419" : { "stringUnit" : { "state" : "translated", "value" : "Política de privacidad" } }
+      }
+    },
     "settings_later" : {
       "extractionState" : "manual",
       "localizations" : {
@@ -33,6 +103,27 @@
             "value" : "Configuración"
           }
         }
+      }
+    },
+    "sorry_title" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : { "stringUnit" : { "state" : "translated", "value" : "We’re sorry" } },
+        "es-419" : { "stringUnit" : { "state" : "translated", "value" : "Lo sentimos" } }
+      }
+    },
+    "terms_accept_required" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : { "stringUnit" : { "state" : "translated", "value" : "You must accept the Terms and Conditions to continue using Demy." } },
+        "es-419" : { "stringUnit" : { "state" : "translated", "value" : "Debes aceptar los Términos y condiciones para continuar usando Demy." } }
+      }
+    },
+    "terms_and_conditions" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : { "stringUnit" : { "state" : "translated", "value" : "Terms and Conditions" } },
+        "es-419" : { "stringUnit" : { "state" : "translated", "value" : "Términos y condiciones" } }
       }
     }
   },

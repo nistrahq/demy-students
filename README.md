@@ -1,162 +1,80 @@
-# Demy Students – iOS App (Swift + SwiftUI + MVVM + Clean Architecture)
+# Demy Students
 
-This repository contains the **iOS mobile application** of the **DemyStudents** project, developed using **Swift**, **SwiftUI**, **MVVM**, and **Clean Architecture**, following a **feature-based modular folder structure**.
+[English](./README.md) | [Español](./README.es.md)
 
-The goal of this app is to provide a seamless and modern experience for **students**, aligned with the backend services and academic requirements of the project.
+The native iOS application for students using **Demy**. It provides a clear daily view of academy activity, upcoming classes, personal information, and account settings through a SwiftUI experience connected to the Demy API.
 
----
+## Student capabilities
 
-## Features  
+- Secure sign-in and session persistence through Keychain.
+- Personalized home with today's classes and academy updates.
+- Full class schedule with session details.
+- Student profile and localized birthdate formatting.
+- Password, language, privacy, terms, and session settings.
+- English and Latin American Spanish localization across Home, Profile, and Settings.
 
-- **SwiftUI-first UI** (modern, declarative, reactive)
-- **MVVM + Clean Architecture**
-- **Feature-based folder structure**
-- **Secure session handling** with Keychain
-- **Networking layer with URLSession + async/await**
-- **Dependency Injection** using a custom DIContainer
-- **Internationalization (i18n)** ready
-- **Accessibility (a11y)** aligned with WCAG standards
-- 100% **Swift**, no storyboards & no UIKit (unless needed)
+## Product preview
 
----
+<table>
+  <tr>
+    <td><img src="./docs/screenshots/home.png" alt="Demy Students home" /></td>
+    <td><img src="./docs/screenshots/schedule.png" alt="Student schedule" /></td>
+  </tr>
+  <tr>
+    <td><img src="./docs/screenshots/profile.png" alt="Student profile" /></td>
+    <td><img src="./docs/screenshots/configuration.png" alt="Student settings" /></td>
+  </tr>
+</table>
 
-## Architecture – MVVM + Clean Architecture + Feature-Based
+## Technology and architecture
 
-The codebase is structured to separate concerns clearly:
+- Swift and SwiftUI with an application-specific design system.
+- MVVM and Clean Architecture organized by feature.
+- Async/await networking through URLSession.
+- Repository and use-case abstractions with dependency injection.
+- Keychain-backed session storage.
+- String Catalog localization (`en` and `es-419`).
 
-- **Presentation Layer** → SwiftUI Views + ViewModels  
-- **Domain Layer** → Entities + UseCases  
-- **Data Layer** → Repositories + Remote/Local DataSources  
+```text
+DemyStudents/
+├── App/            # Lifecycle, configuration, navigation, DI, and session
+├── Core/           # Networking, storage, and shared utilities
+├── Features/       # Auth, Home, Schedules, Profile, and Settings
+├── Resources/      # Localized String Catalogs
+└── Shared/         # Design system and reusable UI
+```
 
-Combined with **feature-based modules**, the structure follows:
+## Run locally
 
-`  
-DemyStudents/  
-├─ App/                          # Application entry point  
-│   ├─ Config/                   # Environments, constants  
-│   ├─ DI/                       # DIContainer  
-│   ├─ Navigation/               # AppRouter, Navigation flows  
-│   └─ Session/                  # SessionManager, auth state  
-│  
-├─ Core/  
-│   ├─ Network/                  # HTTPClient, ApiEndpoints  
-│   ├─ Storage/                  # KeychainStorage  
-│   └─ Utils/                    # Helpers, extensions  
-│  
-└─ Features/  
-    ├─ Auth/                     # Authentication flow  
-    │   ├─ Data/  
-    │   ├─ Domain/  
-    │   └─ Presentation/  
-    ├─ Home/                     # Home screen for students  
-    ├─ Profile/                  # Student profile  
-    └─ ...  
-`
+### Requirements
 
-This structure supports:
-- High modularity  
-- Easy scaling as new features are added  
-- Clean separation of responsibilities  
-- Testability and maintainability
+- macOS with Xcode
+- iOS 17+ simulator or device
+- Demy API reachable from the selected target
 
----
+```bash
+open DemyStudents.xcodeproj
+```
 
-## Installation / Setup  
+The API base URL is defined in `DemyStudents/App/Config/Environment.swift`. Swift Package dependencies resolve when the project opens.
 
-### Prerequisites
-- **Xcode (latest stable)**  
-- **iOS SDK 17+**  
-- Swift 5.9+ recommended  
+## Command-line verification
 
-### Run locally
+```bash
+xcodebuild \
+  -project DemyStudents.xcodeproj \
+  -scheme DemyStudents \
+  -configuration Debug \
+  -sdk iphonesimulator \
+  -destination 'platform=iOS Simulator,name=iPhone 17 Pro' \
+  CODE_SIGNING_ALLOWED=NO build
+```
 
-`  
-# Clone repository  
-git clone https://github.com/<org>/<repo>.git  
-cd <repo>  
+## Demy ecosystem
 
-# Open project  
-open DemyStudents.xcodeproj  
-`
+- [Landing page](https://github.com/nistrahq/demy-landing)
+- [Backend API](https://github.com/nistrahq/demy-api)
+- [Administrator app](https://github.com/nistrahq/demy-admins)
+- [Teacher app](https://github.com/nistrahq/demy-teachers)
 
-### Swift Packages  
-Dependencies will automatically resolve on project open.
-
----
-
-## Project structure reference
-
-- `App/` → app lifecycle, DI, navigation, session, config  
-- `Features/` → feature-based modules (Auth, Home, Profile…)  
-- `Core/` → shared logic (Network, Keychain, Utilities)  
-- `docs/` → extended documentation (architecture, diagrams, API notes)  
-- `CONTRIBUTING.md` → rules for contributions  
-- `CODE_OF_CONDUCT.md` → expected behavior within the team  
-- `SECURITY.md` → how to report vulnerabilities  
-- `AUTHORS.md` → collaborators
-
----
-
-## Contributing
-
-We collaborate using **GitHub Issues** and **Pull Requests**.  
-Use the templates provided for:
-
-- Bug reports  
-- Feature requests  
-- UI/UX issues  
-- Performance issues  
-- Refactors / technical debt  
-- Documentation  
-- General issues  
-
-Please read [CONTRIBUTING.md](./CONTRIBUTING.md) before submitting changes.  
-Also review the [Code of Conduct](./CODE_OF_CONDUCT.md).
-
----
-
-## Issue Templates
-
-Located in [`/.github/ISSUE_TEMPLATE/`](./.github/ISSUE_TEMPLATE/):
-
-- Bug Report  
-- Feature Request  
-- UI/UX Issue  
-- Performance Issue  
-- Refactor / Technical Debt  
-- Documentation  
-- Generic Issue  
-
----
-
-## Extended Documentation
-
-Available in the [`docs/`](./docs/) folder:
-
-- **Architecture** → MVVM layers, feature organization, DI, navigation  
-- **Guides** → How to set up the environment, Git workflow, testing  
-- **Design** → UI/UX rules, color system, spacing, accessibility  
-- **API** → Endpoint specs, data models, backend integration  
-- **References** → Articles, research, official docs  
-
----
-
-## Security
-
-Found a vulnerability?  
-Please refer to [SECURITY.md](./SECURITY.md).  
-**Never disclose security issues publicly**.
-
----
-
-## Authors
-
-Full list in [AUTHORS.md](./AUTHORS.md).
-
----
-
-## Project Status
-
-This is an **academic and private project**, developed by the Software Engineering team (UPC).  
-External contributions are **not accepted**.
-
+See [CONTRIBUTING.md](./CONTRIBUTING.md) for contribution and Git conventions.

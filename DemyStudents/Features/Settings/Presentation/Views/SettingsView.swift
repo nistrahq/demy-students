@@ -22,7 +22,7 @@ struct SettingsView: View {
 
                     Spacer()
 
-                    Text("Configuration")
+                    Text("settings_title", tableName: "Settings")
                         .font(AppTypography.titleMedium)
                         .foregroundColor(AppColors.textPrimary)
 
@@ -45,7 +45,7 @@ struct SettingsView: View {
                             // Privacy Policy
                             ProfileOptionRow(
                                 icon: "lock.fill",
-                                title: "Privacy Policy",
+                                title: String(localized: "privacy_policy", table: "Settings"),
                                 trailing: nil,
                                 showChevron: false,
                                 onTap: { showPrivacy = true }
@@ -56,7 +56,7 @@ struct SettingsView: View {
                             // Terms
                             ProfileOptionRow(
                                 icon: "doc.text",
-                                title: "Terms and Conditions",
+                                title: String(localized: "terms_and_conditions", table: "Settings"),
                                 trailing: nil,
                                 showChevron: false,
                                 onTap: { showTerms = true }
@@ -68,7 +68,7 @@ struct SettingsView: View {
                             Button {
                                 showLogoutModal = true
                             } label: {
-                                Text("Log Out")
+                                Text("log_out", tableName: "Settings")
                                     .foregroundColor(.red)
                                     .padding(.vertical, 14)
                                     .frame(maxWidth: .infinity)
@@ -98,9 +98,9 @@ struct SettingsView: View {
             AlertModal(
                 icon: "rectangle.portrait.and.arrow.right.fill",
                 iconColor: .orange,
-                title: "Log Out?",
-                message: "Are you sure you want to log out of your Demy account?",
-                buttonText: "Log Out",
+                title: String(localized: "log_out_title", table: "Settings"),
+                message: String(localized: "log_out_message", table: "Settings"),
+                buttonText: String(localized: "log_out", table: "Settings"),
                 buttonColor: .red,
                 onButtonTap: {
                     session.signOut()
@@ -110,4 +110,3 @@ struct SettingsView: View {
         }
     }
 }
-

@@ -7,11 +7,20 @@ struct LanguageView: View {
     var body: some View {
         VStack(spacing: 0) {
 
-            TopBar(title: "Language", showBack: true)
+            TopBar(
+                title: String(localized: "language", table: "Profile"),
+                showBack: true
+            )
 
             Form {
-                Toggle("English", isOn: $isEnglish)
-                Toggle("Spanish", isOn: $isSpanish)
+                Toggle(
+                    String(localized: "language_english", table: "Profile"),
+                    isOn: $isEnglish
+                )
+                Toggle(
+                    String(localized: "language_spanish", table: "Profile"),
+                    isOn: $isSpanish
+                )
             }
         }
         .background(AppColors.background)
