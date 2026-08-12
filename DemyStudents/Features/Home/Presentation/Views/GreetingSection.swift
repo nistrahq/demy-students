@@ -8,7 +8,7 @@ struct GreetingSection: View {
     var body: some View {
         VStack(alignment: .leading, spacing: 4) {
 
-            Text("Hi \(name)!")
+            Text(String(format: String(localized: "greetings", table: "Home"), name))
                 .font(AppTypography.titleLarge)
                 .foregroundStyle(AppColors.textPrimary)
 
