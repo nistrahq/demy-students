@@ -2,6 +2,8 @@
 
 [English](./README.md) | [Español](./README.es.md)
 
+![Swift](https://img.shields.io/badge/Swift-F05138?logo=swift&logoColor=white) ![SwiftUI](https://img.shields.io/badge/SwiftUI-0D96F6?logo=swift&logoColor=white) ![iOS 17+](https://img.shields.io/badge/iOS_17+-000000?logo=apple&logoColor=white)
+
 The native iOS application for students using **Demy**. It provides a clear daily view of academy activity, upcoming classes, personal information, and account settings through a SwiftUI experience connected to the Demy API.
 
 ## Student capabilities
