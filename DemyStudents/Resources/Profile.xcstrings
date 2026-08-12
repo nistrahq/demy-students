@@ -1,6 +1,83 @@
 {
   "sourceLanguage" : "en",
   "strings" : {
+    "birthday" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : { "stringUnit" : { "state" : "translated", "value" : "Birthday" } },
+        "es-419" : { "stringUnit" : { "state" : "translated", "value" : "Fecha de nacimiento" } }
+      }
+    },
+    "continue" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : { "stringUnit" : { "state" : "translated", "value" : "Continue" } },
+        "es-419" : { "stringUnit" : { "state" : "translated", "value" : "Continuar" } }
+      }
+    },
+    "date" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : { "stringUnit" : { "state" : "translated", "value" : "Date" } },
+        "es-419" : { "stringUnit" : { "state" : "translated", "value" : "Fecha" } }
+      }
+    },
+    "language" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : { "stringUnit" : { "state" : "translated", "value" : "Language" } },
+        "es-419" : { "stringUnit" : { "state" : "translated", "value" : "Idioma" } }
+      }
+    },
+    "language_english" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : { "stringUnit" : { "state" : "translated", "value" : "English" } },
+        "es-419" : { "stringUnit" : { "state" : "translated", "value" : "Inglés" } }
+      }
+    },
+    "language_spanish" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : { "stringUnit" : { "state" : "translated", "value" : "Spanish" } },
+        "es-419" : { "stringUnit" : { "state" : "translated", "value" : "Español" } }
+      }
+    },
+    "new_password" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : { "stringUnit" : { "state" : "translated", "value" : "New password" } },
+        "es-419" : { "stringUnit" : { "state" : "translated", "value" : "Nueva contraseña" } }
+      }
+    },
+    "password" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : { "stringUnit" : { "state" : "translated", "value" : "Password" } },
+        "es-419" : { "stringUnit" : { "state" : "translated", "value" : "Contraseña" } }
+      }
+    },
+    "password_updated_message" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : { "stringUnit" : { "state" : "translated", "value" : "Your password was updated successfully." } },
+        "es-419" : { "stringUnit" : { "state" : "translated", "value" : "Tu contraseña se actualizó correctamente." } }
+      }
+    },
+    "password_updated_title" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : { "stringUnit" : { "state" : "translated", "value" : "Password updated" } },
+        "es-419" : { "stringUnit" : { "state" : "translated", "value" : "Contraseña actualizada" } }
+      }
+    },
+    "profile_load_error" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : { "stringUnit" : { "state" : "translated", "value" : "Unable to load the profile." } },
+        "es-419" : { "stringUnit" : { "state" : "translated", "value" : "No se pudo cargar el perfil." } }
+      }
+    },
     "profile_later" : {
       "extractionState" : "manual",
       "localizations" : {
@@ -33,6 +110,13 @@
             "value" : "Perfil"
           }
         }
+      }
+    },
+    "reset_password" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : { "stringUnit" : { "state" : "translated", "value" : "Reset password" } },
+        "es-419" : { "stringUnit" : { "state" : "translated", "value" : "Restablecer contraseña" } }
       }
     }
   },

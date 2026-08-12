@@ -11,16 +11,25 @@ struct ResetPasswordView: View {
 
             VStack(spacing: 24) {
 
-                TopBar(title: "Reset Password", showBack: true)
+                TopBar(
+                    title: String(localized: "reset_password", table: "Profile"),
+                    showBack: true
+                )
 
                 VStack(spacing: 16) {
-                    TextField("Password", text: $password)
+                    TextField(
+                        String(localized: "password", table: "Profile"),
+                        text: $password
+                    )
                         .textFieldStyle(.roundedBorder)
 
-                    TextField("New Password", text: $newPassword)
+                    TextField(
+                        String(localized: "new_password", table: "Profile"),
+                        text: $newPassword
+                    )
                         .textFieldStyle(.roundedBorder)
 
-                    Button("Continue") {
+                    Button(String(localized: "continue", table: "Profile")) {
                         withAnimation(.easeInOut) {
                             showSuccess = true
                         }
@@ -39,8 +48,8 @@ struct ResetPasswordView: View {
             // MARK: - SUCCESS MODAL
             if showSuccess {
                 SuccessModal(
-                    title: "¡Congratulations!",
-                    message: "You have completed it successfully"
+                    title: String(localized: "password_updated_title", table: "Profile"),
+                    message: String(localized: "password_updated_message", table: "Profile")
                 ) {
                     withAnimation(.easeInOut) {
                         showSuccess = false

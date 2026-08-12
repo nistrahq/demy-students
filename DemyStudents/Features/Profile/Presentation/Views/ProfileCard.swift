@@ -11,7 +11,7 @@ struct ProfileCard: View {
             // Birthday
             ProfileOptionRow(
                 icon: "calendar",
-                title: "Birthday",
+                title: String(localized: "birthday", table: "Profile"),
                 trailing: birthdate,
                 showChevron: false
             )
@@ -21,7 +21,7 @@ struct ProfileCard: View {
             // Reset Password
             ProfileOptionRow(
                 icon: "key.fill",
-                title: "Reset Password",
+                title: String(localized: "reset_password", table: "Profile"),
                 trailing: nil,
                 showChevron: true
             )
@@ -31,7 +31,7 @@ struct ProfileCard: View {
             // Language
             ProfileOptionRow(
                 icon: "globe",
-                title: "Language",
+                title: String(localized: "language", table: "Profile"),
                 trailing: language,     
                 showChevron: false
             )

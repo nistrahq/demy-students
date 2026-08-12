@@ -7,7 +7,7 @@ struct BirthdaySheet: View {
         VStack(spacing: 16) {
 
             HStack {
-                Text("Date")
+                Text("date", tableName: "Profile")
                     .font(AppTypography.titleMedium)
                     .foregroundColor(AppColors.textPrimary)
                 Spacer()
